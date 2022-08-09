@@ -1,5 +1,5 @@
 <!-- Herda o layout padrão definido no template "main" -->
-@extends('templates.middleware', ['titulo' => "Novo Aluno"])
+@extends('templates.main', ['titulo' => "Novo Aluno"])
 <!-- Preenche o conteúdo da seção "titulo" -->
 @section('titulo') Alunos @endsection
 <!-- Preenche o conteúdo da seção "conteudo" -->

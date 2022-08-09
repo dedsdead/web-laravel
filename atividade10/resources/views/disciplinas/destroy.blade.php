@@ -1,7 +1,7 @@
 <!-- Herda o layout padrão definido no template "main" -->
-@extends('templates.main', ['titulo' => "Remover Aluno"])
+@extends('templates.main', ['titulo' => "Remover Disciplina"])
 <!-- Preenche o conteúdo da seção "titulo" -->
-@section('titulo') Alunos @endsection
+@section('titulo') Disciplinas @endsection
 <!-- Preenche o conteúdo da seção "conteudo" -->
 @section('conteudo')
 
@@ -15,7 +15,7 @@
 <div class="row mt-3">
     <div class="col d-flex justify-content-center">
         <div class="alert alert-success">
-            <b>alunos.destroy </b> / Permitida
+            <b>disciplinas.destroy </b> / Permitida
         </div>
     </div>
 </div>
