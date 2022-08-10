@@ -50,7 +50,7 @@ class MatriculaController extends Controller{
 
         $dados = Disciplina::where('curso_id', $curso->id)->get();
 
-        return view('matriculas.index', compact('dados', 'aluno', 'curso'));
+        return view('matriculas.index', compact('dados', 'aluno', 'curso', 'matriculas'));
     }
 
     public function edit($id){
