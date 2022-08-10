@@ -32,7 +32,17 @@
             </td>
             <td>
             <div class="form-check form-check">
-                <input class="form-check-input" type="checkbox" name="matricula[]" id="matricula" value="{{$item->id}}" required>
+                @foreach($matriculas as $matricula)
+                    @if($aluno->id == $matricula->aluno_id && $item->id == $matricula->disciplina_id)
+                        @php $flag = 1; @endphp
+                    @endif
+                @endforeach
+                @if($flag == 1)
+                    <input class="form-check-input" type="checkbox" name="matricula[]" id="matricula" value="{{$item->id}}" checked required>
+                @endif
+                @else
+                    <input class="form-check-input" type="checkbox" name="matricula[]" id="matricula" value="{{$item->id}}" required>
+                @endif
                 @if($errors->has('matricula'))
                     <div class='invalid-feedback'>
                         {{ $errors->first('matricula') }}
