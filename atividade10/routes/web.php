@@ -14,15 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
     return view('templates.main')->with('titulo', "");
-})->name('index');
+})->middleware(['auth'])->name('dashboard');
 
-Route::resource('eixos', 'EixoController');
+Route::resource('eixos', 'EixoController')->middleware(['auth']);
 
-Route::resource('cursos', 'CursoController');
+Route::resource('cursos', 'CursoController')->middleware(['auth']);
 
-Route::resource('professores', 'ProfessorController');
+Route::resource('professores', 'ProfessorController')->middleware(['auth']);
 
-Route::resource('disciplinas', 'DisciplinaController');
+Route::resource('disciplinas', 'DisciplinaController')->middleware(['auth']);
 
-Route::resource('alunos', 'AlunoController');
+Route::resource('alunos', 'AlunoController')->middleware(['auth']);
+
+require __DIR__.'/auth.php';
