@@ -7,7 +7,7 @@
     @php $ativo=0; @endphp
     <div class="form-check form-switch">
         <input type="hidden" name="ativo" id="ativo" value="0"/>
-        <input class="form-check-input" type="checkbox" name="ativo" id="ativo" value="{{old('ativo')}}" checked />
+        <input class="form-check-input" type="checkbox" name="ativo" id="ativo" value="1" checked />
         <label class="form-check-label" for="ativo">Ativo</label>
         @if($errors->has('ativo'))
             <div class='invalid-feedback'>
