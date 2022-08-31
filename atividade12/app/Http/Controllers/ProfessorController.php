@@ -74,14 +74,14 @@ class ProfessorController extends Controller{
         return redirect()->route('professores.index');
     }
 
-    public function show(Professor $professor){
-        $this->authorize('viewAny', $professor);
+    public function show(Professor $professore){
+        $this->authorize('viewAny', $professore);
     }
 
-    public function edit(Professor $professor){
-        $this->authorize('update', $professor);
+    public function edit(Professor $professore){
+        $this->authorize('update', $professore);
 
-        $dados = $professor;
+        $dados = $professore;
         $eixos = Eixo::all();
         
         if(!isset($dados)) { return view('erros.id'); }    
@@ -89,10 +89,10 @@ class ProfessorController extends Controller{
         return view('professores.edit', compact('dados', 'eixos'));
     }
 
-    public function update(Request $request, Professor $professor){
-        $this->authorize('update', $professor);
+    public function update(Request $request, Professor $professore){
+        $this->authorize('update', $professore);
 
-        if(!isset($professor)) { return view('erros.id'); }
+        if(!isset($professore)) { return view('erros.id'); }
 
         $regras = [
             'ativo' => 'nullable',
@@ -108,23 +108,23 @@ class ProfessorController extends Controller{
 
         $request->validate($regras, $msgs);
         
-        $professor->fill([
+        $professore->fill([
             'ativo' => $request->input('ativo', 0),
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'eixo_id' => $request->eixo
         ]);
 
-        $professor->save();
+        $professore->save();
 
         return redirect()->route('professores.index');
     }
 
-    public function destroy(Professor $professor){
-        $this->authorize('delete', $professor);
+    public function destroy(Professor $professore){
+        $this->authorize('delete', $professore);
 
-        if(!isset($professor)) { return view('erros.id'); }
+        if(!isset($professore)) { return view('erros.id'); }
 
-        $professor->delete();
+        $professore->delete();
 
         return redirect()->route('professores.index');
     }
