@@ -18,7 +18,13 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('templates.main')->with('titulo', "");
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('clientes', 'ClienteController')->middleware(['auth']);
+
+Route::resource('propriedades', 'PropriedadeController')->middleware(['auth']);
+
+Route::resource('vendas', 'VendaController')->middleware(['auth']);
 
 require __DIR__.'/auth.php';

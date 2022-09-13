@@ -4,9 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRersourcesTable extends Migration{
-    public function up(){
-        Schema::create('rersources', function (Blueprint $table) {
+class CreateResourcesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('resources', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -20,6 +27,6 @@ class CreateRersourcesTable extends Migration{
      */
     public function down()
     {
-        Schema::dropIfExists('rersources');
+        Schema::dropIfExists('resources');
     }
 }
