@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 
+use App\Facades\UserPermissions;
+
 use App\Models\Role;
 
 class RegisteredUserController extends Controller{
@@ -30,7 +32,7 @@ class RegisteredUserController extends Controller{
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role_id' => $request->role,
+            'role_id' => $request->role_id,
         ]);
 
         event(new Registered($user));
