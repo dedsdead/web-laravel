@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Propriedade;
 use App\Models\Caracteristica;
 use App\Models\Cliente;
 use App\Models\Tipo;
@@ -11,8 +12,22 @@ class ClienteController extends Controller{
     public function index(){
         $this->authorize('viewAny', Cliente::class);
         $dados = Cliente::all();
+        $propriedades = Propriedade::all();
 
-        return view('clientes.index', compact('dados'));
+        foreach ($dados as $dado) {
+            $aux = Tipo::find($dado['codigo_tipo']);
+            if(isset($aux)){
+                $dado['codigo_tipo'] = $aux->nome;
+            }
+
+            $aux = Caracteristica::find($dado['codigo_caracteristica']);
+            if(isset($aux)){
+                $dado['codigo_caracteristica'] = $aux->nome;
+            }
+            
+        }
+
+        return view('clientes.index', compact('dados', 'propriedades'));
 
     }
 

@@ -7,11 +7,12 @@
                 :title="'Propriedades'"
                 :crud="'propriedades'" 
                 :header="['NOME', 'TIPO', 'METRAGEM', 'AÇÕES']"
-                :fields="['nome', 'tipo_id', 'metragem']" 
+                :fields="['nome', 'codigo_tipo', 'metragem']" 
                 :data="$dados"
                 :hide="[true, false, false, false]"
-                :info="['nome', 'caracteristica_id', 'descricao', 'endereco']"
+                :info="['nome', 'codigo_caracteristica', 'descricao', 'endereco']"
                 :remove="'nome'"
+                :names="$clientes"
             />
         </div>
     </div>

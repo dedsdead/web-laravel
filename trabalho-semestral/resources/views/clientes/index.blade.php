@@ -10,8 +10,9 @@
                 :fields="['nome', 'telefone', 'endereco']" 
                 :data="$dados"
                 :hide="[false, false, true, false]"
-                :info="['nome', 'endereco']"
+                :info="['nome', 'codigo_tipo', 'codigo_caracteristica']"
                 :remove="'nome'"
+                :list="$propriedades"
             />
         </div>
     </div>

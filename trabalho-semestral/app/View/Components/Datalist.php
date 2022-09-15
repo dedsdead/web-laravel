@@ -14,10 +14,10 @@ class Datalist extends Component {
     public $hide;
     public $info;
     public $list;
-    public $name;
+    public $names;
     public $remove;
 
-    public function __construct($title, $crud, $header, $fields, $data, $hide, $info, $list, $name, $remove) {
+    public function __construct($title, $crud, $header, $fields, $data, $hide, $info, $list, $names, $remove) {
         $this->title = $title;   
         $this->crud = $crud;   
         $this->header = $header;
@@ -26,7 +26,7 @@ class Datalist extends Component {
         $this->hide = $hide;
         $this->info = (array) $info;
         $this->list = $list;
-        $this->list = $name;         
+        $this->names = $names;         
         $this->remove = $remove;
     }
 

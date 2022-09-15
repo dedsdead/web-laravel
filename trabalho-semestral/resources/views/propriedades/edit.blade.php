@@ -165,7 +165,8 @@
     @php $disponivel=$dados->disponivel; @endphp
     <div class="form-check form-switch">
         <input type="hidden" name="disponivel" id="disponivel" value="0"/>
-        <input class="form-check-input" type="checkbox" name="disponivel" id="disponivel" value=1 checked />
+        <input class="form-check-input" type="checkbox" name="disponivel" id="disponivel" value="1" checked/>
+        
         <label class="form-check-label" for="disponivel">Disponivel</label>
         @if($errors->has('disponivel'))
             <div class='invalid-feedback'>

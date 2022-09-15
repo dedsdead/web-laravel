@@ -107,7 +107,40 @@
             </div>
         </div>
     </div>
-    
+    <div class="modal fade" tabindex="-1" id="personModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary">Cliente Proprietario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="personModal" onclick="closePersonModal()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-secondary">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-block align-content-center" onclick="closePersonModal()">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" tabindex="-1" id="listModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary">Propriedades Possuidas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="listModal" onclick="closeListModal()" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-secondary">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-block align-content-center" onclick="closeListModal()">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" tabindex="-1" id="removeModal">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -148,12 +181,42 @@
             $('#infoModal').modal().find('.modal-body').html("");
             
             for(let a=0; a< fields.length; a++) {
-                $('#infoModal').modal().find('.modal-body').append("<b>" + fields[a].toUpperCase() + " - " + data[fields[a]] + "</b><br>");
+                $('#infoModal').modal().find('.modal-body').append("<b class='text-primary'>" + fields[a].toUpperCase() + "</b><b> - " + data[fields[a]] + "</b><br>");
             }
             $("#infoModal").modal('show');
         }
         function closeInfoModal() {
             $("#infoModal").modal('hide');
+        }
+        function showPersonModal(id, names) {
+            names = JSON.parse(names);
+            $('#personModal').modal().find('.modal-body').html("");
+
+            $.each(names, function(key, data) {
+                
+                if(id == data['id'])
+                    $('#personModal').modal().find('.modal-body').append("<b> PROPRIETARIO - " + data['nome'] + "</b><br>");
+            });
+                
+            $("#personModal").modal('show');
+        }
+        function closePersonModal() {
+            $("#personModal").modal('hide');
+        }
+        function showListModal(id, list) {
+            list = JSON.parse(list);
+            $('#listModal').modal().find('.modal-body').html("");
+
+            $.each(list, function(key, data) {
+                
+                if(id == data['id_cliente'])
+                    $('#listModal').modal().find('.modal-body').append("<b> PROPRIEDADE - " + data['nome'] + "</b><br>");
+            });
+                
+            $("#listModal").modal('show');
+        }
+        function closeListModal() {
+            $("#listModal").modal('hide');
         }
         function showRemoveModal(id, remove) {
             remove = JSON.parse(remove)

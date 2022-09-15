@@ -16,19 +16,21 @@ class PropriedadeController extends Controller{
         $dados = Propriedade::all();
 
         foreach ($dados as $dado) {
-            $aux = Tipo::find($dado['tipo_id']);
+            $aux = Tipo::find($dado['codigo_tipo']);
             if(isset($aux)){
-                $dado['tipo_id'] = $aux->nome;
+                $dado['codigo_tipo'] = $aux->nome;
             }
 
-            $aux = Caracteristica::find($dado['caracteristica_id']);
+            $aux = Caracteristica::find($dado['codigo_caracteristica']);
             if(isset($aux)){
-                $dado['caracteristica_id'] = $aux->nome;
+                $dado['codigo_caracteristica'] = $aux->nome;
             }
             
         }
 
-        return view('propriedades.index', compact('dados'));
+        $clientes = Cliente::all();
+
+        return view('propriedades.index', compact('dados', 'clientes'));
 
     }
 
@@ -85,13 +87,10 @@ class PropriedadeController extends Controller{
             $obj->disponivel = 1;
             $obj->save();
 
-            
-
             event(new PropriedadeEvent($obj));
 
-            
-            
             return redirect()->route('propriedades.index');
+            
         }
 
     }

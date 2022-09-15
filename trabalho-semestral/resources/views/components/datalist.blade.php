@@ -45,7 +45,26 @@
                                 </svg>
                             </a>
                         @endcan
-                        <!-- AQUI ESTAVA PERSON E LIST -->
+                        @if($crud == 'propriedades')
+                            @can('view', $item)
+                                <a nohref style="cursor:pointer" onclick="showPersonModal('{{ $item->id_cliente }}', '{{ json_encode($names) }}')" class="btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
+                                    <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
+                                </svg>
+                                </a>
+                            @endcan
+                        @endif
+                        @if($crud == 'clientes')
+                            @can('view', $item)
+                                <a nohref style="cursor:pointer" onclick="showListModal('{{ $item->id }}', '{{ json_encode($list) }}')" class="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="24" height="24">
+                                        <!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                        <path d="M543.8 287.6c17 0 32-14 32-32.1c1-9-3-17-11-24L512 185V64c0-17.7-14.3-32-32-32H448c-17.7 0-32 14.3-32 32v36.7L309.5 7c-6-5-14-7-21-7s-15 1-22 8L10 231.5c-7 7-10 15-10 24c0 18 14 32.1 32 32.1h32V448c0 35.3 28.7 64 64 64H448.5c35.5 0 64.2-28.8 64-64.3l-.7-160.2h32zM288 288c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64zM176 400c0-44.2 35.8-80 80-80h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H192c-8.8 0-16-7.2-16-16z"/>
+                                    </svg>
+                                </a>
+                            @endcan
+                        @endif
                         @can('delete', $item)
                             <a nohref style="cursor:pointer" onclick="showRemoveModal('{{ $item->id }}', '{{ json_encode($item->$remove) }}')" class="btn">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
