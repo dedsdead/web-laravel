@@ -24,9 +24,10 @@
         </div>
         <div class="row">
             <div class="col" >
-                <div class="input-group">
+                <div class="input-group form-floating mb-3">
                     <span class="input-group-text text-white" style="background-color: #154c79;">Tipo de Imovel (opcional)</span>
-                    <select class="form-select form-select-sm" aria-label="Tipo" name="tipo" required>
+                    <select class="form-select form-select-sm" aria-label="Tipo" name="tipo">
+                    <option selected></option>
                     @foreach ($tipos as $tipo)
                         <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
                     @endforeach
@@ -41,9 +42,10 @@
         </div>
         <div class="row">
             <div class="col" >
-                <div class="input-group">
+                <div class="input-group form-floating mb-3">
                     <span class="input-group-text text-white" style="background-color: #154c79;">Caracteristicas do Imovel (opcional)</span>
-                    <select class="form-select form-select-sm" aria-label="Caracteristica" name="caracteristica" required>
+                    <select class="form-select form-select-sm" aria-label="Caracteristica" name="caracteristica">
+                    <option selected></option>
                     @foreach ($caracteristicas as $caracteristica)
                         <option value="{{$caracteristica->id}}">{{$caracteristica->nome}}</option>
                     @endforeach
@@ -85,7 +87,7 @@
                         placeholder="Telefone"
                         value="{{old('telefone')}}"
                     />
-                    <label for="telefone">Telefone do Clientes</label>
+                    <label for="telefone">Telefone do Cliente</label>
                     @if($errors->has('telefone'))
                         <div class='invalid-feedback'>
                             {{ $errors->first('telefone') }}
@@ -97,14 +99,13 @@
         <div class="row">
             <div class="col" >
                 <div class="form-floating mb-3">
-                    <input 
-                        type="endereco" 
-                        class="form-control @if($errors->has('endereco')) is-invalid @endif" 
-                        name="endereco" 
-                        placeholder="Endereço do Cliente"
-                        value="{{old('endereco')}}"
-                    />
-                    <label for="endereco">Endereço do Cliente</label>
+                    <textarea 
+                        id="endereco"
+                        name="endereco"
+                        class="form-control @if($errors->has('endereco')) is-invalid @endif"
+                        rows="5"
+                    >{{old('endereco')}}</textarea>
+                    <label for="endereco">Endereco do Cliente</label>
                     @if($errors->has('endereco'))
                         <div class='invalid-feedback'>
                             {{ $errors->first('endereco') }}

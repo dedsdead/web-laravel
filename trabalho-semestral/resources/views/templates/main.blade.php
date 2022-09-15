@@ -39,7 +39,9 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('clientes.index')}}" class="dropdown-item">Clientes</a></li>
                                 <li><a href="{{route('propriedades.index')}}" class="dropdown-item">Propriedades</a></li>
-                                <li><a href="{{route('vendas.index')}}" class="dropdown-item">Vendas</a></li>
+                                @can('viewAny', "App\Model\Venda")
+                                    <li><a href="{{route('vendas.index')}}" class="dropdown-item">Vendas</a></li>
+                                @endcan
                             </ul>
                         </li>
                         <li class="nav-item ps-2 me-3">
@@ -64,8 +66,8 @@
                 </div>
                 @if(isset($rota))
                     <div class="col d-flex justify-content-end">
-                        @if($rota != 'vinculos.index' && $rota != 'matriculas.index')
-                            @php if($titulo != "Professores")$param=substr($titulo, 0, -1); else $param="Professor"; @endphp
+                        @if($rota != 'vendas.index')
+                            @php $param=substr($titulo, 0, -1); @endphp
                             @can('create', "App\Model\\$param")
                                 <a href= "{{ route($rota) }}" class="btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
@@ -99,42 +101,6 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary btn-block align-content-center" onclick="closeInfoModal()">
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" tabindex="-1" id="listModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-primary">Disciplinas Vinculadas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="listModal" onclick="closeListModal()" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-secondary">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-block align-content-center" onclick="closeListModal()">
-                        OK
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" tabindex="-1" id="personModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title text-primary">Professor Vinculado</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="personModal" onclick="closePersonModal()" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-secondary">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-block align-content-center" onclick="closePersonModal()">
                         OK
                     </button>
                 </div>
@@ -188,40 +154,6 @@
         }
         function closeInfoModal() {
             $("#infoModal").modal('hide');
-        }
-        function showListModal(id, list, names) {
-            list = JSON.parse(list);
-            names = JSON.parse(names);
-            $('#listModal').modal().find('.modal-body').html("");
-            $.each(list, function(index, value) {
-                if(value['professor_id'] == id){
-                    $.each(names, function(key, data) {
-                        if(value['disciplina_id'] == data['id'])
-                            $('#listModal').modal().find('.modal-body').append("<b> DISCIPLINA - " + data['nome'] + "</b><br>");
-                    });
-                }
-            });
-            $("#listModal").modal('show');
-        }
-        function closeListModal() {
-            $("#listModal").modal('hide');
-        }
-        function showPersonModal(id, list, names) {
-            list = JSON.parse(list);
-            names = JSON.parse(names);
-            $('#personModal').modal().find('.modal-body').html("");
-            $.each(list, function(index, value) {
-                if(value['disciplina_id'] == id){
-                    $.each(names, function(key, data) {
-                        if(value['professor_id'] == data['id'])
-                            $('#personModal').modal().find('.modal-body').append("<b> NOME - " + data['nome'] + "</b><br>");
-                    });
-                }
-            });
-            $("#personModal").modal('show');
-        }
-        function closePersonModal() {
-            $("#personModal").modal('hide');
         }
         function showRemoveModal(id, remove) {
             remove = JSON.parse(remove)

@@ -10,8 +10,8 @@ class CreateVendasTable extends Migration{
             $table->id();
             $table->unsignedBigInteger('codigo_propriedade');
             $table->foreign('codigo_propriedade')->references('id')->on('propriedades');
-            $table->unsignedBigInteger('cpf_comprador');
-            $table->foreign('cpf_comprador')->references('cpf')->on('clientes');
+            $table->unsignedBigInteger('id_comprador');
+            $table->foreign('id_comprador')->references('id')->on('clientes');
             $table->date('data_venda');
             $table->double('valor_venda');
             $table->timestamps();

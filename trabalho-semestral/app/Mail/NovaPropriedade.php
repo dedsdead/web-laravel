@@ -9,14 +9,16 @@ use Illuminate\Queue\SerializesModels;
 
 use App\Models\Propriedade;
 
+use Illuminate\Support\Facades\Auth;
+
 class NovaPropriedade extends Mailable{
     use Queueable, SerializesModels;
 
     public $user;
     public $propriedade;
 
-    public function __construct(User $user, Propriedade $propriedade){
-        $this->user = $user;
+    public function __construct(Propriedade $propriedade){
+        $this->user = Auth::user();
         $this->propriedade = $propriedade;
 
     }

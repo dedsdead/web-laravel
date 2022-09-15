@@ -18,7 +18,7 @@ class PropriedadeListener{
 
     public function handle(PropriedadeEvent $event){
         Mail::to($event->user)->send(
-            new NovaPropriedade($event->user, $event->propriedade)
+            new NovaPropriedade($event->propriedade)
             
         );
 

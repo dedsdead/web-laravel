@@ -50,48 +50,15 @@ class ClienteController extends Controller{
         $obj_tipo = Tipo::find($request->tipo);
         $obj_caracteristica = Caracteristica::find($request->caracteristica);
 
-        /*if((isset($obj_tipo)) && (isset($obj_caracteristica))){
-            $obj = new Cliente();
+        $obj = new Cliente();
 
-            $obj->cpf = $request->cpf;
-            $obj->tipo()->associate($obj_tipo);
-            $obj->caracteristica()->associate($obj_caracteristica);
-            $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $obj->telefone = $request->telefone;
-            $obj->endereco = mb_strtoupper($request->endereco, 'UTF-8');
-            $obj->save();
-
-        } else if((isset($obj_tipo)) && (!isset($obj_caracteristica))){
-            $obj = new Cliente();
-
-            $obj->cpf = $request->cpf;
-            $obj->tipo()->associate($obj_tipo);
-            $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $obj->telefone = $request->telefone;
-            $obj->endereco = mb_strtoupper($request->endereco, 'UTF-8');
-            $obj->save();
-
-        } else if((!isset($obj_tipo)) && (isset($obj_caracteristica))){
-            $obj = new Cliente();
-
-            $obj->cpf = $request->cpf;
-            $obj->caracteristica()->associate($obj_caracteristica);
-            $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $obj->telefone = $request->telefone;
-            $obj->endereco = mb_strtoupper($request->endereco, 'UTF-8');
-            $obj->save();
-
-        } else {*/
-            $obj = new Cliente();
-
-            $obj->tipo()->associate($obj_tipo);
-            $obj->caracteristica()->associate($obj_caracteristica);
-            $obj->cpf = $request->cpf;
-            $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
-            $obj->telefone = $request->telefone;
-            $obj->endereco = mb_strtoupper($request->endereco, 'UTF-8');
-            $obj->save();
-        //}
+        $obj->tipo()->associate($obj_tipo);
+        $obj->caracteristica()->associate($obj_caracteristica);
+        $obj->cpf = $request->cpf;
+        $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
+        $obj->telefone = $request->telefone;
+        $obj->endereco = mb_strtoupper($request->endereco, 'UTF-8');
+        $obj->save();
 
         return redirect()->route('clientes.index');
 
@@ -108,6 +75,7 @@ class ClienteController extends Controller{
         $this->authorize('update', $cliente);
 
         $dados = $cliente;
+
         $tipos = Tipo::all();
         $caracteristicas = Caracteristica::all();
         

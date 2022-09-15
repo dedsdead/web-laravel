@@ -9,11 +9,11 @@ class Cliente extends Model{
     use HasFactory;
 
     public function tipo(){
-        return $this->belongsTo('App\Models\Tipo');
+        return $this->belongsTo('App\Models\Tipo', 'codigo_tipo');
     }
 
     public function caracteristica(){
-        return $this->belongsTo('App\Models\Caracteristica');
+        return $this->belongsTo('App\Models\Caracteristica', 'codigo_caracteristica');
     }
 
     protected $fillable = [

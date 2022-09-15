@@ -14,11 +14,21 @@ class PropriedadeController extends Controller{
     public function index(){
         $this->authorize('viewAny', Propriedade::class);
         $dados = Propriedade::all();
-        $tipos = Tipo::all();
-        $caracteristicas = Caracteristica::all();
-        $clientes = Cliente::all();
 
-        return view('propriedades.index', compact('dados', 'tipos', 'caracteristicas', 'clientes'));
+        foreach ($dados as $dado) {
+            $aux = Tipo::find($dado['tipo_id']);
+            if(isset($aux)){
+                $dado['tipo_id'] = $aux->nome;
+            }
+
+            $aux = Caracteristica::find($dado['caracteristica_id']);
+            if(isset($aux)){
+                $dado['caracteristica_id'] = $aux->nome;
+            }
+            
+        }
+
+        return view('propriedades.index', compact('dados'));
 
     }
 
@@ -35,19 +45,19 @@ class PropriedadeController extends Controller{
 
     public function store(Request $request){
         $this->authorize('create', Propriedade::class);
-
+        
         $regras = [
             'codigo_tipo' => 'required',
             'codigo_caracteristica' => 'nullable',
-            'cpf_cliente' => 'nullable',
+            'id_cliente' => 'nullable',
             'nome' => 'required|max:100|min:10',
             'descricao' => 'required|max:100|min:10',
-            'metragem' => 'required|max:11|min:11',
+            'metragem' => 'required|max:5|min:2',
             'matricula' => 'nullable',
             'endereco' => 'required|max:100|min:5'
             
         ];
-
+        
         $msgs = [
             'required' => 'O preenchimento do campo [:attribute] é obrigatório!',
             'max' => 'O campo [:attribute] possui um tamanho máximo de [:max]',
@@ -57,9 +67,9 @@ class PropriedadeController extends Controller{
 
         $request->validate($regras, $msgs);
 
-        $obj_tipo = Tipo::find($request->tipo);
-        $obj_caracteristica = Caracteristica::find($request->caracteristica);
-        $obj_cliente = Cliente::find($request->cpf_cliente);
+        $obj_tipo = Tipo::find($request->codigo_tipo);
+        $obj_caracteristica = Caracteristica::find($request->codigo_caracteristica);
+        $obj_cliente = Cliente::find($request->id_cliente);
 
         $obj = new Propriedade();
 
@@ -75,8 +85,13 @@ class PropriedadeController extends Controller{
             $obj->disponivel = 1;
             $obj->save();
 
-            event(new PropriedadeEvent($obj));
             
+
+            event(new PropriedadeEvent($obj));
+
+            
+            
+            return redirect()->route('propriedades.index');
         }
 
     }
@@ -110,13 +125,12 @@ class PropriedadeController extends Controller{
         $regras = [
             'codigo_tipo' => 'required',
             'codigo_caracteristica' => 'nullable',
-            'cpf_cliente' => 'nullable',
+            'id_cliente' => 'nullable',
             'nome' => 'required|max:100|min:10',
             'descricao' => 'required|max:100|min:10',
-            'metragem' => 'required|max:11|min:11',
+            'metragem' => 'required|max:5|min:2',
             'matricula' => 'nullable',
-            'endereco' => 'required|max:100|min:5',
-            'disponivel' => 'nullable'
+            'endereco' => 'required|max:100|min:5'
             
         ];
 
@@ -130,9 +144,9 @@ class PropriedadeController extends Controller{
         $request->validate($regras, $msgs);
         
         $propriedade->fill([
-            'codigo_tipo' => $request->tipo,
-            'codigo_caracteristica' => $request->caracteristica,
-            'cpf_cliente' => $request->cpf_cliente,
+            'codigo_tipo' => $request->codigo_tipo,
+            'codigo_caracteristica' => $request->codigo_caracteristica,
+            'id_cliente' => $request->id_cliente,
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'descricao' => mb_strtoupper($request->descricao, 'UTF-8'),
             'metragem' => $request->metragem,

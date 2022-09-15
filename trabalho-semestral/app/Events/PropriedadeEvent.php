@@ -18,7 +18,7 @@ class PropriedadeEvent {
     
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $propriedade;
+    public $propriedade;
 
     public function __construct(Propriedade $propriedade){
         $this->propriedade = $propriedade;
