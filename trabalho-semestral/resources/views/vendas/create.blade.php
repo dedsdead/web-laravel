@@ -26,7 +26,11 @@
                     <span class="input-group-text text-white" style="background-color: #154c79;">Cliente comprador</span>
                     <select class="form-select form-select-sm" aria-label="id_comprador" name="id_comprador">
                     @foreach ($clientes as $cliente)
-                        <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                        @foreach ($propriedades as $propriedade)
+                            @if($cliente->id != $propriedade->id_cliente)
+                                <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                            @endif
+                        @endforeach
                     @endforeach
                     </select>
                     @if($errors->has('cliente'))
@@ -41,7 +45,7 @@
             <div class="col" >
                 <div class="form-floating mb-3">
                     <input 
-                        type="data_venda" 
+                        type="date" 
                         class="form-control @if($errors->has('data_venda')) is-invalid @endif" 
                         name="data_venda" 
                         placeholder="Data de venda"

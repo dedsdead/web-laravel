@@ -99,7 +99,7 @@ class VendaController extends Controller{
         $this->authorize('update', $venda);
 
         $dados = $venda;
-        $propriedades = Propriedade::where('disponivel', 1)->get();
+        $propriedades = Propriedade::all();
         $clientes = Cliente::all();
         
         if(!isset($dados)) { return view('erros.id'); }

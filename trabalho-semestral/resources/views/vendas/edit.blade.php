@@ -9,7 +9,6 @@
             <div class="input-group form-floating mb-3">
                 <span class="input-group-text text-white" style="background-color: #154c79;">Propriedade a vender</span>
                 <select class="form-select form-select-sm" aria-label="Propriedade" name="codigo_propriedade">
-                <option selected></option>
                 @foreach ($propriedades as $propriedade)
                     @if($propriedade->id == $dados->codigo_propriedade)
                         <option value="{{$propriedade->id}}" selected>{{$propriedade->nome}}</option>
@@ -31,13 +30,16 @@
             <div class="input-group form-floating mb-3">
                 <span class="input-group-text text-white" style="background-color: #154c79;">Cliente comprador</span>
                 <select class="form-select form-select-sm" aria-label="id_comprador" name="id_comprador">
-                <option selected></option>
                 @foreach ($clientes as $cliente)
-                    @if($cliente->id == $dados->id_comprador)
-                        <option value="{{$cliente->id}}" selected>{{$cliente->nome}}</option>
-                    @else
-                        <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
-                    @endif 
+                    @foreach ($propriedades as $propriedade)
+                        @if($cliente->id != $propriedade->id_cliente)
+                            @if($cliente->id == $dados->id_comprador)
+                                <option value="{{$cliente->id}}" selected>{{$cliente->nome}}</option>
+                            @else
+                                <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                            @endif
+                        @endif
+                    @endforeach
                 @endforeach
                 </select>
                 @if($errors->has('cliente'))
@@ -52,7 +54,7 @@
             <div class="col" >
                 <div class="form-floating mb-3">
                     <input 
-                        type="data_venda" 
+                        type="date" 
                         class="form-control @if($errors->has('data_venda')) is-invalid @endif" 
                         name="data_venda" 
                         placeholder="Data de venda"

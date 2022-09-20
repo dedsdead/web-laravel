@@ -181,7 +181,8 @@
             $('#infoModal').modal().find('.modal-body').html("");
             
             for(let a=0; a< fields.length; a++) {
-                $('#infoModal').modal().find('.modal-body').append("<b class='text-primary'>" + fields[a].toUpperCase() + "</b><b> - " + data[fields[a]] + "</b><br>");
+                if(data[fields[a]] != null)
+                    $('#infoModal').modal().find('.modal-body').append("<b class='text-primary'>" + fields[a].toUpperCase() + "</b><b> - " + data[fields[a]] + "</b><br>");
             }
             $("#infoModal").modal('show');
         }
