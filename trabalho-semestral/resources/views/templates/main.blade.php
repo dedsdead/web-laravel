@@ -188,7 +188,7 @@
             
             for(let a=0; a< fields.length; a++) {
                 if(data[fields[a]] != null)
-                    $('#infoModal').modal().find('.modal-body').append("<b class='text-primary'>" + fields[a].toUpperCase() + "</b><b> - " + data[fields[a]] + "</b><br>");
+                    $('#infoModal').modal().find('.modal-body').append("<b>" + fields[a].toUpperCase() + "</b> - <b class='text-primary'>'" + data[fields[a]] + "'</b><br>");
             }
             $("#infoModal").modal('show');
         }
@@ -202,7 +202,7 @@
             $.each(names, function(key, data) {
                 
                 if(id == data['id'])
-                    $('#personModal').modal().find('.modal-body').append("<b> PROPRIETARIO - " + data['nome'] + "</b><br>");
+                    $('#personModal').modal().find('.modal-body').append("<b> PROPRIETARIO - </b><b class='text-primary'> '" + data['nome'] + "'</b><br>");
             });
                 
             $("#personModal").modal('show');
@@ -217,7 +217,7 @@
             $.each(list, function(key, data) {
                 
                 if(id == data['id_cliente'])
-                    $('#listModal').modal().find('.modal-body').append("<b> PROPRIEDADE - " + data['descricao'] + "</b><br>");
+                    $('#listModal').modal().find('.modal-body').append("<b> PROPRIEDADE - </b><b class='text-primary'> '" + data['descricao'] + "'</b><br>");
             });
                 
             $("#listModal").modal('show');
