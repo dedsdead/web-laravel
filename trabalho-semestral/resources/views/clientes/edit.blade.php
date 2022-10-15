@@ -6,50 +6,6 @@
     @method('PUT')
     <div class="row">
         <div class="col" >
-            <div class="input-group form-floating mb-3">
-                <span class="input-group-text text-white" style="background-color: #154c79;">Tipo de Imovel (opcional)</span>
-                <select class="form-select form-select-sm" aria-label="Tipo" name="tipo">
-                <option selected></option>
-                @foreach ($tipos as $tipo)
-                    @if($tipo->id == $dados->codigo_tipo)
-                        <option value="{{$tipo->id}}" selected>{{$tipo->nome}}</option>
-                    @else
-                        <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
-                    @endif
-                @endforeach
-                </select>
-                @if($errors->has('tipo'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('tipo') }}
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col" >
-            <div class="input-group form-floating mb-3">
-                <span class="input-group-text text-white" style="background-color: #154c79;">Caracteristicas do Imovel (opcional)</span>
-                <select class="form-select form-select-sm" aria-label="Caracteristica" name="caracteristica">
-                <option selected></option>
-                @foreach ($caracteristicas as $caracteristica)
-                    @if($caracteristica->id == $dados->codigo_caracteristica)
-                        <option value="{{$caracteristica->id}}" selected>{{$caracteristica->nome}}</option>
-                    @else
-                        <option value="{{$caracteristica->id}}">{{$caracteristica->nome}}</option>
-                    @endif
-                @endforeach
-                </select>
-                @if($errors->has('caracteristica'))
-                    <div class='invalid-feedback'>
-                        {{ $errors->first('caracteristica') }}
-                    </div>
-                @endif
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col" >
             <div class="form-floating mb-3">
                 <input 
                     type="text" 
@@ -99,6 +55,50 @@
                 @if($errors->has('endereco'))
                     <div class='invalid-feedback'>
                         {{ $errors->first('endereco') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" >
+            <div class="input-group form-floating mb-3">
+                <span class="input-group-text text-white" style="background-color: #154c79;">Tipo de Imovel (buscando)</span>
+                <select class="form-select form-select-sm" aria-label="Tipo" name="tipo">
+                <option selected></option>
+                @foreach ($tipos as $tipo)
+                    @if($tipo->id == $dados->codigo_tipo)
+                        <option value="{{$tipo->id}}" selected>{{$tipo->nome}}</option>
+                    @else
+                        <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
+                    @endif
+                @endforeach
+                </select>
+                @if($errors->has('tipo'))
+                    <div class='invalid-feedback'>
+                        {{ $errors->first('tipo') }}
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" >
+            <div class="input-group form-floating mb-3">
+                <span class="input-group-text text-white" style="background-color: #154c79;">Caracteristicas do Imovel (buscando)</span>
+                <select class="form-select form-select-sm" aria-label="Caracteristica" name="caracteristica">
+                <option selected></option>
+                @foreach ($caracteristicas as $caracteristica)
+                    @if($caracteristica->id == $dados->codigo_caracteristica)
+                        <option value="{{$caracteristica->id}}" selected>{{$caracteristica->nome}}</option>
+                    @else
+                        <option value="{{$caracteristica->id}}">{{$caracteristica->nome}}</option>
+                    @endif
+                @endforeach
+                </select>
+                @if($errors->has('caracteristica'))
+                    <div class='invalid-feedback'>
+                        {{ $errors->first('caracteristica') }}
                     </div>
                 @endif
             </div>

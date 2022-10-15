@@ -48,41 +48,22 @@
         </div>
     </div>
     <div class="row">
-            <div class="col" >
-                <div class="input-group form-floating mb-3">
-                    <span class="input-group-text text-white" style="background-color: #154c79;">Cliente (opcional)</span>
-                    <select class="form-select form-select-sm" aria-label="id_cliente" name="id_cliente">
-                    <option selected></option>
-                    @foreach ($clientes as $cliente)
-                        @if($cliente->id == $dados->id_cliente)
-                            <option value="{{$cliente->id}}" selected>{{$cliente->nome}}</option>
-                        @else
-                            <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
-                        @endif
-                    @endforeach
-                    </select>
-                    @if($errors->has('cliente'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('cliente') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-    <div class="row">
         <div class="col" >
-            <div class="form-floating mb-3">
-                <input 
-                    type="text" 
-                    class="form-control @if($errors->has('nome')) is-invalid @endif" 
-                    name="nome" 
-                    placeholder="Nome"
-                    value="{{$dados->nome}}"
-                />
-                <label for="nome">Nome da Propriedade (titulo)</label>
-                @if($errors->has('nome'))
+            <div class="input-group form-floating mb-3">
+                <span class="input-group-text text-white" style="background-color: #154c79;">Cliente (opcional)</span>
+                <select class="form-select form-select-sm" aria-label="id_cliente" name="id_cliente">
+                <option selected></option>
+                @foreach ($clientes as $cliente)
+                    @if($cliente->id == $dados->id_cliente)
+                        <option value="{{$cliente->id}}" selected>{{$cliente->nome}}</option>
+                    @else
+                        <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                    @endif
+                @endforeach
+                </select>
+                @if($errors->has('cliente'))
                     <div class='invalid-feedback'>
-                        {{ $errors->first('nome') }}
+                        {{ $errors->first('cliente') }}
                     </div>
                 @endif
             </div>

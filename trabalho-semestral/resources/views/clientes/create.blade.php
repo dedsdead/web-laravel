@@ -8,51 +8,15 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control @if($errors->has('cpf')) is-invalid @endif" 
-                        name="cpf" 
-                        placeholder="CPF"
-                        value="{{old('cpf')}}"
+                        class="form-control @if($errors->has('nome')) is-invalid @endif" 
+                        name="nome" 
+                        placeholder="Nome"
+                        value="{{old('nome')}}"
                     />
-                    <label for="cpf">CPF do Cliente</label>
-                    @if($errors->has('cpf'))
+                    <label for="nome">Nome do Cliente</label>
+                    @if($errors->has('nome'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('cpf') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col" >
-                <div class="input-group form-floating mb-3">
-                    <span class="input-group-text text-white" style="background-color: #154c79;">Tipo de Imovel (opcional)</span>
-                    <select class="form-select form-select-sm" aria-label="Tipo" name="tipo">
-                    <option selected></option>
-                    @foreach ($tipos as $tipo)
-                        <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
-                    @endforeach
-                    </select>
-                    @if($errors->has('tipo'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('tipo') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col" >
-                <div class="input-group form-floating mb-3">
-                    <span class="input-group-text text-white" style="background-color: #154c79;">Caracteristicas do Imovel (opcional)</span>
-                    <select class="form-select form-select-sm" aria-label="Caracteristica" name="caracteristica">
-                    <option selected></option>
-                    @foreach ($caracteristicas as $caracteristica)
-                        <option value="{{$caracteristica->id}}">{{$caracteristica->nome}}</option>
-                    @endforeach
-                    </select>
-                    @if($errors->has('caracteristica'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('caracteristica') }}
+                            {{ $errors->first('nome') }}
                         </div>
                     @endif
                 </div>
@@ -63,15 +27,15 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control @if($errors->has('nome')) is-invalid @endif" 
-                        name="nome" 
-                        placeholder="Nome"
-                        value="{{old('nome')}}"
+                        class="form-control @if($errors->has('cpf')) is-invalid @endif" 
+                        name="cpf" 
+                        placeholder="CPF"
+                        value="{{old('cpf')}}"
                     />
-                    <label for="nome">Nome do Cliente</label>
-                    @if($errors->has('nome'))
+                    <label for="cpf">CPF do Cliente</label>
+                    @if($errors->has('cpf'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('nome') }}
+                            {{ $errors->first('cpf') }}
                         </div>
                     @endif
                 </div>
@@ -109,6 +73,42 @@
                     @if($errors->has('endereco'))
                         <div class='invalid-feedback'>
                             {{ $errors->first('endereco') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" >
+                <div class="input-group form-floating mb-3">
+                    <span class="input-group-text text-white" style="background-color: #154c79;">Tipo de Imovel (buscando)</span>
+                    <select class="form-select form-select-sm" aria-label="Tipo" name="tipo">
+                    <option selected></option>
+                    @foreach ($tipos as $tipo)
+                        <option value="{{$tipo->id}}">{{$tipo->nome}}</option>
+                    @endforeach
+                    </select>
+                    @if($errors->has('tipo'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('tipo') }}
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" >
+                <div class="input-group form-floating mb-3">
+                    <span class="input-group-text text-white" style="background-color: #154c79;">Caracteristicas do Imovel (buscando)</span>
+                    <select class="form-select form-select-sm" aria-label="Caracteristica" name="caracteristica">
+                    <option selected></option>
+                    @foreach ($caracteristicas as $caracteristica)
+                        <option value="{{$caracteristica->id}}">{{$caracteristica->nome}}</option>
+                    @endforeach
+                    </select>
+                    @if($errors->has('caracteristica'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('caracteristica') }}
                         </div>
                     @endif
                 </div>

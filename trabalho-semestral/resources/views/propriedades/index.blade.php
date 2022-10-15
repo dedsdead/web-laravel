@@ -6,12 +6,12 @@
             <x-datalist
                 :title="'Propriedades'"
                 :crud="'propriedades'" 
-                :header="['NOME', 'TIPO', 'METRAGEM', 'AÇÕES']"
-                :fields="['nome', 'codigo_tipo', 'metragem']" 
+                :header="['TIPO', 'METRAGEM', 'AÇÕES']"
+                :fields="['codigo_tipo', 'metragem']" 
                 :data="$dados"
                 :hide="[true, false, false, false]"
-                :info="['nome', 'codigo_caracteristica', 'descricao', 'endereco']"
-                :remove="'nome'"
+                :info="['codigo_caracteristica', 'descricao', 'endereco']"
+                :remove="'descricao'"
                 :names="$clientes"
             />
         </div>

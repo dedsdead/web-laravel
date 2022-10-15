@@ -9,7 +9,7 @@
                     <span class="input-group-text text-white" style="background-color: #154c79;">Propriedade a vender</span>
                     <select class="form-select form-select-sm" aria-label="Propriedade" name="codigo_propriedade">
                     @foreach ($propriedades as $propriedade)
-                        <option value="{{$propriedade->id}}">{{$propriedade->nome}}</option>
+                        <option value="{{$propriedade->id}}">{{$propriedade->descricao}}</option>
                     @endforeach
                     </select>
                     @if($errors->has('codigo_propriedade'))

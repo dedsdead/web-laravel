@@ -16,7 +16,7 @@ class VendaController extends Controller{
         foreach ($dados as $dado) {
             $aux = Propriedade::find($dado['codigo_propriedade']);
             if(isset($aux)){
-                $dado['codigo_propriedade'] = $aux->nome;
+                $dado['codigo_propriedade'] = $aux->descricao;
                 
             }
 

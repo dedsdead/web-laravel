@@ -16,6 +16,8 @@ class PropriedadeController extends Controller{
         $dados = Propriedade::all();
 
         foreach ($dados as $dado) {
+            $dado['metragem'] = (string)$dado['metragem'].'m²';
+
             $aux = Tipo::find($dado['codigo_tipo']);
             if(isset($aux)){
                 $dado['codigo_tipo'] = $aux->nome;
@@ -52,8 +54,7 @@ class PropriedadeController extends Controller{
             'codigo_tipo' => 'required',
             'codigo_caracteristica' => 'nullable',
             'id_cliente' => 'nullable',
-            'nome' => 'required|max:100|min:10',
-            'descricao' => 'required|max:100|min:10',
+            'descricao' => 'required|max:255|min:10',
             'metragem' => 'required|max:5|min:2',
             'matricula' => 'nullable',
             'endereco' => 'required|max:100|min:5'
@@ -79,7 +80,6 @@ class PropriedadeController extends Controller{
             $obj->tipo()->associate($obj_tipo);
             $obj->caracteristica()->associate($obj_caracteristica);
             $obj->cliente()->associate($obj_cliente);
-            $obj->nome = mb_strtoupper($request->nome, 'UTF-8');
             $obj->descricao = mb_strtoupper($request->descricao, 'UTF-8');
             $obj->metragem = $request->metragem;
             $obj->matricula = $request->matricula;
@@ -125,8 +125,7 @@ class PropriedadeController extends Controller{
             'codigo_tipo' => 'required',
             'codigo_caracteristica' => 'nullable',
             'id_cliente' => 'nullable',
-            'nome' => 'required|max:100|min:10',
-            'descricao' => 'required|max:100|min:10',
+            'descricao' => 'required|max:255|min:10',
             'metragem' => 'required|max:5|min:2',
             'matricula' => 'nullable',
             'endereco' => 'required|max:100|min:5'
@@ -146,7 +145,6 @@ class PropriedadeController extends Controller{
             'codigo_tipo' => $request->codigo_tipo,
             'codigo_caracteristica' => $request->codigo_caracteristica,
             'id_cliente' => $request->id_cliente,
-            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'descricao' => mb_strtoupper($request->descricao, 'UTF-8'),
             'metragem' => $request->metragem,
             'matricula' => $request->matricula,

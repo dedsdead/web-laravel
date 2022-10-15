@@ -81,14 +81,20 @@
                 @endif
             </div>
             <hr>
-            @yield('conteudo')
+            <div id="content">
+                @yield('conteudo')
+                &nbsp;
+            </div>
         </div>
+    </body>
+
+    <footer>
         <nav class="navbar fixed-bottom navbar-light" style="background-color: #154c79;">
             <div class="container-fluid">
                 <span class="text-white fw-light">@ Instituto Federal do Parana</span>
             </div>
         </nav>
-    </body>
+    </footer>
 
     <div class="modal fade" tabindex="-1" id="infoModal">
         <div class="modal-dialog">
@@ -211,7 +217,7 @@
             $.each(list, function(key, data) {
                 
                 if(id == data['id_cliente'])
-                    $('#listModal').modal().find('.modal-body').append("<b> PROPRIEDADE - " + data['nome'] + "</b><br>");
+                    $('#listModal').modal().find('.modal-body').append("<b> PROPRIEDADE - " + data['descricao'] + "</b><br>");
             });
                 
             $("#listModal").modal('show');

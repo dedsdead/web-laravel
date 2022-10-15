@@ -14,7 +14,7 @@ class CreateClientesTable extends Migration{
             $table->unsignedBigInteger('codigo_caracteristica')->nullable();
             $table->foreign('codigo_caracteristica')->references('id')->on('caracteristicas');
             $table->string('nome');
-            $table->integer('telefone');
+            $table->string('telefone');
             $table->string('endereco');
             $table->timestamps();
             $table->softDeletes();

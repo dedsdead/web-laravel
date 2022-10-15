@@ -24,7 +24,6 @@ class Propriedade extends Model{
         'codigo_tipo',
         'codigo_caracteristica',
         'id_cliente',
-        'nome',
         'descricao',
         'metragem',
         'matricula',

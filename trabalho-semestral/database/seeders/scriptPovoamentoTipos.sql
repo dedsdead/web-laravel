@@ -1,5 +1,7 @@
-INSERT INTO `tipos` (`nome`) VALUES ('TERRENO'), 
+INSERT INTO `tipos` (`nome`) VALUES ('TERRENO RURAL'),
+                                    ('TERRENO URBANO'),
                                     ('CASA'), 
                                     ('SOBRADO'), 
                                     ('APARTAMENTO'), 
-                                    ('COMERCIAL');
+                                    ('COMERCIAL'),
+                                    ('TERRENO RURAL');

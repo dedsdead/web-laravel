@@ -14,7 +14,6 @@ class CreatePropriedadesTable extends Migration{
             $table->foreign('codigo_caracteristica')->references('id')->on('caracteristicas');
             $table->unsignedBigInteger('id_cliente')->nullable();
             $table->foreign('id_cliente')->references('id')->on('clientes');
-            $table->string('nome');
             $table->string('descricao');
             $table->double('metragem');
             $table->integer('matricula')->nullable();
